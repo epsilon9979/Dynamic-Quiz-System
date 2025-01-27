@@ -1,6 +1,6 @@
 
 def get_para(goal):
-    para={'NEWS_APIKEY':'f', # use your own key
+    para={'NEWS_APIKEY':'', # use your own key
         'BASE_URL':'https://newsapi.org/v2/everything',
         'MEDIA':'cnn',
         
