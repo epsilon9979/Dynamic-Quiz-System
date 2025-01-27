@@ -7,10 +7,15 @@ class record:
     def __init__(self):
         pass
     
-    
     def setting(self):
         try:
-            cnx = mysql.connector.connect(user='', password='', host='')
+            cnx = mysql.connector.connect(
+                user='vercel',                         # 資料庫用戶名稱
+                password='',  # 資料庫密碼
+                host='',                   # 公網 IP
+                database='questions_warehouse',        # 要連接的資料庫名稱（請改為你的資料庫名稱）
+                port=3306                              # MySQL 默認埠號
+            )
         except mysql.connector.Error as err:
             if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
                 print("Something is wrong with your user name or password")
@@ -60,6 +65,8 @@ class record:
             "  `answer` varchar(100) NOT NULL,"
             "  `explaintion` varchar(1000) NOT NULL,"
             "  `date` DATETIME,"
+            "  `title` varchar(100) NOT NULL,"
+            "  `url` varchar(1000) NOT NULL,"
             "  PRIMARY KEY(`id`)"
             ") ENGINE=InnoDB")
 
@@ -80,17 +87,14 @@ class record:
         
     def append(self, cursor, cnx, content, which_table):
         add_product = (f"INSERT ignore INTO {which_table}"
-                       "(id, questions, optionA, optionB, optionC, optionD, answer, explaintion, date) "
-                       "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)")
+                       "(id, questions, optionA, optionB, optionC, optionD, answer, explaintion, date, title, url) "
+                       "VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)")
         cursor.execute(add_product, content)
-        cnx.commit()  
-        print(f'successfully append items to {which_table}')
-        # cursor.close()
-        # cnx.close()
+        cnx.commit()
               
               
     def fetch(self, cursor, cnx, which_table, which_item, criteria): 
-        #items:(id, questions, optionA, optionB, optionC, optionD, answer, explaintion, date)
+        #items:(id, questions, optionA, optionB, optionC, optionD, answer, explaintion, date, title, url)
         if criteria:
             query = (f"SELECT {which_item} FROM {which_table} WHERE {criteria}")
         else:
@@ -99,8 +103,6 @@ class record:
         box = []
         for goals in cursor:
             box.append(goals)
-        # cursor.close()
-        # cnx.close()
         return box
 
 
@@ -108,7 +110,6 @@ class record:
         delete_query = ( f"DELETE FROM {which_table} WHERE {criteria}" )
         cursor.execute(delete_query)
         cnx.commit()
-        # print(f"Deleted content from {which_table}")
         
         
     def show_tables(self, cursor):

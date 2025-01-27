@@ -41,6 +41,6 @@ class get_resource(STEPS):
             y,m,d = map(int,date.split('/'))
             newdate = datetime(y,m,d)
             news['上版日期'] = newdate
-        print(rawdata_2)   
+        print(rawdata_2)    
         return rawdata_2
     

@@ -45,18 +45,14 @@ class get_resource_int(STEPS):
                 content = news['description']
                 link = news['url']
                 rawdate = news['publishedAt'] # 2024-09-27T10:50:34Z
-                # print("title:",news['title']
-                # print("description:",content,'\n')
-                
-                # keyword = ['rain', 'hurricane', 'typhoon', 'tornado', 'flooding', 'carbon dioxide', 'wheather', 'earthquake', 'global warning', 'tsunami', 'volcano', 'snow', 'drought']
-                # for word in keyword:
-                #     if word in content:
                 article = scrapt(link)
                 date = datetime.strptime(rawdate, "%Y-%m-%dT%H:%M:%SZ")
                 material = {}
                 material['內容'] = article
                 material['上版日期'] = date
-                material['county'] = [ get_para('TABLE_NAME')[-1] ]
+                material['county'] = ["international"]
+                material['標題'] = news['title']
+                material['來源網址'] = link
                 disaster_news.append(material)
                 continue
                     
