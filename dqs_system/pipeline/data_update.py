@@ -44,5 +44,7 @@ class filter(STEPS):
             expire_date = expire_days(expire_num)
             criteria = f"date < '{expire_date}'"
             database.delete(cursor, cnx, table, criteria)
-            
+            if len(database.fetch(cursor, cnx, table, 'id', None)) == 0:
+                database.drop_table(cursor, table)  
+                print(f"dropping table {table}") 
         return material 

@@ -14,11 +14,11 @@ def get_para(goal):
         'expire_days':92,
         'update_days':1,
         'DATABASE_NAME':'questions_warehouse',
-        'TABLE_NAME':['Keelung', 'New_Taipei', 'Taipei', 'Taoyuan', 'Hsinchu', 'Miaoli', 'Taichung',
-                        'Changhua', 'Nantou', 'Yunlin', 'Chiayi', 'Tainan', 'Kaohsiung', 'Pingtung',
-                        'Taitung', 'Hualien', 'Yilan', 'Lienchiang', 'Kinmen', 'Penghu', 'international'],
-        'county_list':['基隆市','新北市','臺北市','桃園市','新竹','苗栗縣','臺中市','彰化縣','南投縣','雲林縣',
-                        '嘉義縣','臺南市','高雄市','屏東縣','臺東縣','花蓮縣','宜蘭縣','連江縣','金門縣','澎湖縣','international']
+        'TABLE_NAME':['Keelung', 'New_Taipei', 'Taipei', 'Taipei', 'Taoyuan', 'Hsinchu', 'Miaoli', 'Taichung', 'Taichung',
+                        'Changhua', 'Nantou', 'Yunlin', 'Chiayi', 'Tainan', 'Tainan', 'Kaohsiung', 'Pingtung',
+                        'Taitung', 'Taitung', 'Hualien', 'Yilan', 'Lienchiang', 'Kinmen', 'Penghu', 'international', 'energy'],
+        'county_list':['基隆','新北','臺北','台北','桃園','新竹','苗栗','臺中', '台中','彰化','南投','雲林',
+                        '嘉義','臺南', '台南', '高雄','屏東','臺東','台東','花蓮','宜蘭','連江','金門','澎湖','international', 'energy']
         }
     
     return para[goal]

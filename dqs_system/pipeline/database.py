@@ -7,13 +7,19 @@ class record:
     def __init__(self):
         pass
     
+
     def setting(self):
         try:
+            # cnx = mysql.connector.connect(
+            #     user='root',                         # 資料庫用戶名稱
+            #     password='',                # 資料庫密碼
+            #     host='127.0.0.1',                   # 公網 IP
+            #     port=3306                              # MySQL 默認埠號
+            # )
             cnx = mysql.connector.connect(
-                user='vercel',                         # 資料庫用戶名稱
+                user='',                         # 資料庫用戶名稱
                 password='',  # 資料庫密碼
                 host='',                   # 公網 IP
-                database='questions_warehouse',        # 要連接的資料庫名稱（請改為你的資料庫名稱）
                 port=3306                              # MySQL 默認埠號
             )
         except mysql.connector.Error as err:
@@ -119,3 +125,8 @@ class record:
             table = str(table[0])
             existed_tables.append(table)
         return existed_tables
+    
+    
+    def drop_table(self, cursor, which_table):
+        cursor.execute(f"DROP TABLE {which_table}")
+    

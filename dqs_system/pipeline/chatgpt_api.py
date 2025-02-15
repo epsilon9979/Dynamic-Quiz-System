@@ -45,7 +45,7 @@ class manufacture(STEPS):
                 response3 = ChatGPT(order3)
                 order4 = response3 + prompt4
                 response4 = ChatGPT(order4)
-
+                print(response4)#####################################################
                 questions['rawquestion'] = response4
                 questions['county'] = city
                 questions['time'] = news['上版日期']
@@ -53,7 +53,7 @@ class manufacture(STEPS):
                 questions['url'] = news['來源網址']
                 series.append(questions)
         
-        print(series)
+        # print(series)
         return series        
                     
                     
